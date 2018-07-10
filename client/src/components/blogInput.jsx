@@ -25,7 +25,9 @@ class BlogInput extends Component {
     }
 
     onBtnClick(value) {
+        this.setState({text: value});
         console.log('clicked');
+
     }
 
 
