@@ -12,4 +12,17 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/create', (req,res) => {
+let author = {
+    name: 'Don Lowkeyy',
+    email: 'key@123.com'
+
+}
+
+authors.insert(author)
+.then(id => {
+    res.json(id);
+})
+})
+
 export default router;
