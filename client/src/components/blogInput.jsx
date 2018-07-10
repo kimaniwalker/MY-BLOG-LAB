@@ -24,6 +24,10 @@ class BlogInput extends Component {
         this.setState({ text: value });
     }
 
+    onBtnClick(value) {
+        console.log('clicked');
+    }
+
 
 
     render() {
@@ -36,14 +40,14 @@ class BlogInput extends Component {
                         value={this.state.text}
                         onChange={(event) => this.onInputChange(event.target.value)}
                         placeholder="Make Your Blog Post Now" />
-                    <button onClick={this.hasLoaded}>Submit</button>
+                    <button onClick={this.onBtnClick}>Submit</button>
                 </div>
             );
         } else {
             return (
                 <div>
                     <h1>LOADING....</h1>
-                    <button onClick={this.hasLoaded}>Submit</button>
+                    <button onClick={this.onBtnClick}>Submit</button>
                 </div>
             )
         }
