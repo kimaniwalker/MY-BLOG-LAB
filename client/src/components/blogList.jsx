@@ -1,24 +1,49 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import BlogInput from './blogInput';
 
-let BlogList = (props) => {
+class BlogList extends Component {
 
-    return (
-        <div>
-            <BlogInput />
-            <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">Card title</h5>
+    constructor(props) {
+        super(props);
+        this.state = {
+            blog: []
+        }
 
-                    <p className="card-text">{props.value}</p>
-                    <a href="#" className="card-link">Card link</a>
-                    <a href="#" className="card-link">Another link</a>
+    }
+
+    async componentDidMount() {
+        try {
+            let response = await fetch('/api/blogList');
+            let data = await response.json();
+            console.log(data);
+            this.setState = ({ blog: data });
+        } catch (e) {
+            console.log(e);
+        }
+
+
+    }
+
+
+    render() {
+        let blogdiv = this.state.blog.map((blog) => {
+            return (
+                <div key={id}>
+                    <h3>{blog.title}</h3>
+                    <h5>{blog.content}</h5>
                 </div>
+            );
+        });
+        return (
+
+            <div>
+                <h1>LOADING....</h1>
+                {blogdiv}
             </div>
-        </div>
-    );
+        )
+    }
 
 }
+
 
 export default BlogList;
