@@ -6,7 +6,7 @@ class BlogInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: '',
+            title: '',
             hasLoaded: false
         }
     }
@@ -21,10 +21,17 @@ class BlogInput extends Component {
     }
 
     onInputChange(value) {
-        this.setState({ text: value });
+        this.setState({ title: value });
     }
 
     onBtnClick(value) {
+
+        fetch('/api/blogList', {
+            method:'POST',
+            body: JSON.stringify(value),
+            headers: new Headers({ 'Content-Type': 'application/json'})
+        })
+
         console.log(value);
         var para = document.createElement("P");                       // Create a <p> element
         var t = document.createTextNode(value);       // Create a text node
@@ -40,12 +47,12 @@ class BlogInput extends Component {
         if (this.state.hasLoaded) {
             return (
                 <div>
-                    <h1>{this.state.text}</h1>
+                    <h1>{this.state.title}</h1>
                     <input
-                        value={this.state.text}
+                        value={this.state.title}
                         onChange={(event) => this.onInputChange(event.target.value)}
                         placeholder="Make Your Blog Post Now" />
-                    <button onClick={(event) => this.onBtnClick(this.state.text)}>Submit</button>
+                    <button onClick={(event) => this.onBtnClick(this.state.title)}>Submit</button>
                 </div>
             );
         } else {
