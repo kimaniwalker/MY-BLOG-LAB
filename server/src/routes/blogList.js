@@ -12,13 +12,22 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/', (req,res) => {
-let blog = req.body;
+router.get('/:id', (req, res) => {
+    let id = req.params.id;
+    blogs.getOne(id)
+        .then(blogs => {
+            res.json(blogs);
+        })
 
-blogs.insert(blog)
-.then(id => {
-    res.json(id);
 })
+
+router.post('/', (req, res) => {
+    let blog = req.body;
+
+    blogs.insert(blog)
+        .then(id => {
+            res.json(id);
+        })
 })
 
 export default router;

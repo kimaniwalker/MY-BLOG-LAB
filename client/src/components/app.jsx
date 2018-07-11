@@ -4,6 +4,7 @@ import HelloWorld from './hello';
 import GoodbyeWorld from './goodbye';
 import BlogInput from './blogInput';
 import BlogList from './blogList';
+import SingleBlogPost from './singleblog';
 
 class Navigation extends Component {
 
@@ -18,7 +19,8 @@ class Navigation extends Component {
                         <Route exact path="/" component={HelloWorld} />
                         <Route path="/goodbye" component={GoodbyeWorld} />
                         <Route path="/blog" component={BlogInput} />
-                        <Route path="/bloglist" component={BlogList} />
+                        <Route path="/bloglist/:id" component={SingleBlogPost} />
+                        <Route exact path="/bloglist" component={BlogList} />
                     </Switch>
                 </Fragment>
             </Router>
