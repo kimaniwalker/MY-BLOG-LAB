@@ -6,7 +6,8 @@ class BlogList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            blog: []
+            blogs: []
+            
         }
 
     }
@@ -16,7 +17,7 @@ class BlogList extends Component {
             let response = await fetch('/api/blogList');
             let data = await response.json();
             console.log(data);
-            this.setState = ({ blog: data });
+            this.setState = ({ blogs: data });
         } catch (e) {
             console.log(e);
         }
@@ -26,12 +27,14 @@ class BlogList extends Component {
 
 
     render() {
-        let blogdiv = this.state.blog.map((blog) => {
+        let blogdiv = this.state.blogs.map((blog) => {
             return (
-                <div key={id}>
+                <div key={blog.id}>
+                
                     <h3>{blog.title}</h3>
                     <h5>{blog.content}</h5>
                 </div>
+                
             );
         });
         return (
