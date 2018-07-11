@@ -18,7 +18,7 @@ class BlogList extends Component {
             let response = await fetch('/api/blogList');
             let data = await response.json();
             console.log(data);
-            this.setState = ({ blogs: data });
+            this.setState({ blogs: data });
         } catch (e) {
             console.log(e);
         }
